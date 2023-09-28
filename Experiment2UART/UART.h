@@ -17,13 +17,14 @@ typedef struct UART
 	volatile uint8_t UART_UCSRB;
 	volatile uint8_t UART_UCSRC;
 	volatile uint8_t UART_UCSRD;
-	volatile uint16_t UART_UBRR;  //volatile uint8_t UART_UBRRH;
+	volatile uint8_t UART_UBRRL;
+	volatile uint8_t UART_UBRRH;
 	volatile uint8_t UART_UDR;
 } UART_t;
 
-uint32_t Calc_Baudrate(uint32_t baud_rate, uint8_t UtwoX);
+//uint32_t Calc_Baudrate(uint32_t baud_rate, uint8_t UtwoX);
 
-void UART_init(volatile UART_t *UART_addr, uint32_t baud_rate);
+void UART_init(volatile UART_t *UART_addr, uint16_t baud_rate);
 
 void UART_transmit(volatile UART_t *UART_addr, uint8_t data);
 
@@ -33,8 +34,20 @@ uint8_t UART_receive(volatile UART_t *UART_addr);
 /***** UARTS ******/
 
 #define UART0 ((volatile UART_t *) (0xC0U))
-#define UART1 ((volatile UART_t *) (0xC8U))
-#define UART2 ((volatile UART_t *) (0xD0U)) 
+#define UART1 ((volatile UART_t *) (0xC0U))
+#define UART2 ((volatile UART_t *) (0xC0U))
+
+//#define UCSRA (0) 
+//#define UCSRB (1) 
+//#define UCSRC (2) 
+//#define UCSRD (3) 
+//#define UCSRD (3)	
+//#define UBRRL (4) 
+//#define UBRRH (5)
+//#define UDR   (6)
+
+//#define UART1 ((volatile UART_t *) (0xC8U))
+//#define UART2 ((volatile UART_t *) (0xD0U)) 
 
 // UCSRA flags
 #define RXCn 7  // RX Complete flag bit position in UCSRA

@@ -16,7 +16,7 @@ const char Prnt_bytes_prnt[64] PROGMEM = {"Addr. Offset   0  1  2  3  4  5  6  7
 void print_16bytes(uint8_t * array_in, uint16_t offset);
 
 /***********************************************************************
-DESC:    Prints 8 bytes in Hexadecimal and then ASCII
+DESC: Prints 8 bytes in Hexadecimal and then ASCII
 INPUT: Pointer to an array of eight bytes
 RETURNS: nothing
 CAUTION: 
