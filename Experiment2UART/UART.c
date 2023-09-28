@@ -16,17 +16,19 @@ void UART_init(volatile UART_t *UART_addr, uint32_t baud_rate)
     uint16_t UBRR_value = Calc_Baudrate(baud_rate, U2X_Val); //Where do we get U2X
 
     UART_addr->UART_UBRR = UBRR_value;
-    UART_addr->UART_UCSRA = 0; //set u2x here. currently off (0)
+    UART_addr->UART_UCSRA = (U2X_Val<<U2X); //set u2x here. currently off (0)
 
 // Determine the value for UCSRC using the settings for number of bits,
 // parity and number of stop bits and write this value. In my solution, I
 // defined constants for these settings to make the code more readable. You
 // could also make sure your comments explain the value written to the
 // register.
-    UART_addr->UART_UCSRC = (async_mode | no_parity | one_stop_bit | eight_bit_data);
+    UART_addr->UART_UCSRC = 0x00; // clears it 
+	UART_addr->UART_UCSRC = (async_mode_1 | async_mode_2 | no_parity_1 | no_parity_2 | one_stop_bit | eight_bit_data);
 
 // Enable the transmitter and receiver with interrupts disabled by writing the
-// appropriate value to UCSRB
+// appropriate value to UCSRB 
+	UART_addr->UART_UCSRB = 0x00; //cleared
     UART_addr->UART_UCSRB = (RXCIE_dis | TXCIE_dis | UDRIE_dis | RXEN_en | TXEN_en);
     return; 
 }

@@ -32,25 +32,26 @@ uint8_t UART_receive(volatile UART_t *UART_addr);
 
 /***** UARTS ******/
 
-#define UART0 ((volatile UART_t *) (&UCSR0A))
-#define UART1 ((volatile UART_t *) (&UCSR1A))
-#define UART2 ((volatile UART_t *) (&UCSR2A)) 
+#define UART0 ((volatile UART_t *) (0xC0U))
+#define UART1 ((volatile UART_t *) (0xC8U))
+#define UART2 ((volatile UART_t *) (0xD0U)) 
 
 // UCSRA flags
 #define RXCn 7  // RX Complete flag bit position in UCSRA
 
 #define U2X_Val 0
-
-//USCRA mode and frame settings
-#define async_mode (0<<6)
+//UBRR? mode and frame settings
+#define async_mode_1 (0<<6)
+#define async_mode_2 (0<<7)
 #define sync_mode (1<<6)
 #define SBI_mode (3<<6)
-#define no_parity (0<<4)
+#define no_parity_1 (0<<4)
+#define no_parity_2 (0<<5)
 #define even_parity (2<<4)
 #define odd_parity (3<<4)
 #define one_stop_bit (0<<3)
 #define two_stop_bits (1<<3)
-#define eight_bit_data (3<<2)
+#define eight_bit_data (3<<1)
 
 //UCSRB
 #define RXEN_en (1<<4)

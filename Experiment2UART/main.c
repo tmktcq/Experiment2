@@ -13,15 +13,18 @@ int main(void)
 {
 	uint32_t BAUD_RATE = 9600; 
 	
+    //UART_init(UART0, BAUD_RATE); 
     UART_init(UART0, BAUD_RATE); 
-    UART_init(UART1, (uint32_t)9600U); 
+    UART_init(UART1, BAUD_RATE); 
+    UART_init(UART2, BAUD_RATE); 
 
     while (1) 
     {
-        UART_transmit(UART0, 0xAA);
-        _delay_ms(500);
-        UART_transmit(UART1, 0xAA);
-        _delay_ms(500);
+       UART_transmit(UART0, 0x55);
+       UART_transmit(UART1, 0x55);
+       UART_transmit(UART2, 0x55);
+       //_delay_ms(500);
+
     }
 }
 
